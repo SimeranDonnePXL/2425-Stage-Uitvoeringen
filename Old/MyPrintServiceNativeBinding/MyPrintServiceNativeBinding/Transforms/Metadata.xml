@@ -1,0 +1,13 @@
+﻿<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+	<add-node path="/api/package[@name='com.example.print_service_lib']">
+		<class abstract="false" deprecated="not deprecated" final="false" name="MyPrinterDiscoverySession" static="false" visibility="public" extends="java.lang.Object"></class>
+		<class abstract="false" deprecated="not deprecated" final="false" name="MyPrintService" static="false" visibility="public" extends="java.lang.Object"></class>
+	</add-node>
+</metadata>
