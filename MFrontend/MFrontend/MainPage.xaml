@@ -14,5 +14,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Label x:Name="TimeLabel"/>
     </VerticalStackLayout>
 </ContentPage>

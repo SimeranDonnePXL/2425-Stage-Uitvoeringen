@@ -1,6 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using MFrontend.Models;
+﻿using MFrontend.Models;
 using MFrontend.Services;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace MFrontend;
 
@@ -22,12 +23,17 @@ public partial class MainPage : ContentPage
 
     private async void LoadPrinters()
     {
+        var stopwatch = Stopwatch.StartNew();
+
         _printers = await _printerService.GetPrintersAsync();
         foreach (var printer in _printers)
             PrinterPicker.Items.Add(printer.Name);
             
         // Notify the print service about available printers
         _customPrintService.PrintersToDiscover(_printers);
+
+        stopwatch.Stop();
+        TimeLabel.Text = $"LoadPrinters took {stopwatch.ElapsedMilliseconds} ms";
     }
 
     private async void OnPrintClicked(object sender, EventArgs e)
