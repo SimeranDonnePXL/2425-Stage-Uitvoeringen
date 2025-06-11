@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:stage_uitvoeringen/models/printer.dart';
 
 class CustomPrintService{
-  static final printServiceChannel = new MethodChannel("stage_uitvoering/custom_print_service");
+  static final printServiceChannel = MethodChannel("stage_uitvoering/custom_print_service");
 
   static Future<void> sendPrintersToAndroid(List<Printer> printers) async {
     final List<Map<String, dynamic>> data = printers

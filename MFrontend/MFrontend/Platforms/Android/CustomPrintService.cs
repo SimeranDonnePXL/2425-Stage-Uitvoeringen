@@ -32,8 +32,8 @@ namespace MFrontend.Services
             prefs.Edit().PutString("stored_printers", json).Commit();
 
 
-            var service = new MyPrintService();
-            service.PrintersToDiscover(backendPrinters);
+            //var service = new MyPrintService();
+            //service.PrintersToDiscover(backendPrinters);
         }
     }
 }

@@ -45,10 +45,8 @@ namespace MFrontend.Platforms.Android
 
                         Log.Debug(TAG, $"Processing printer: {name} (ID: {localId})");
 
-                        // Use the built-in C# helper to get a PrinterId:
                         PrinterId printId = _service.GeneratePrinterId(localId);
 
-                        // Build capabilities:
                         PrinterCapabilitiesInfo caps = new PrinterCapabilitiesInfo.Builder(printId)
                             .AddMediaSize(PrintAttributes.MediaSize.IsoA4, true)
                             .AddResolution(
@@ -61,7 +59,6 @@ namespace MFrontend.Platforms.Android
                             )
                             .Build();
 
-                        // Build PrinterInfo with PrinterStatus.Idle (instead of obsolete StatusIdle):
                         var info = new PrinterInfo.Builder(printId, name, PrinterStatus.Idle)
                             .SetCapabilities(caps)
                             .Build();
@@ -82,40 +79,26 @@ namespace MFrontend.Platforms.Android
         public override void OnStopPrinterDiscovery()
         {
             Log.Debug(TAG, "Stopping printer discovery");
-            // No call to base.OnStopPrinterDiscovery() because the base is abstract.
         }
 
         public override void OnValidatePrinters(IList<PrinterId> printerIds)
         {
             Log.Debug(TAG, $"Validating printers: {printerIds.Count}");
-            // If any printer is no longer valid, call ReportPrinterStatus(printerId, status).
         }
 
         public override void OnStartPrinterStateTracking(PrinterId printerId)
         {
             Log.Debug(TAG, $"Starting state tracking for printer: {printerId.LocalId}");
-            // You could, e.g., query toner/ink levels here.
         }
 
         public override void OnStopPrinterStateTracking(PrinterId printerId)
         {
             Log.Debug(TAG, $"Stopping state tracking for printer: {printerId.LocalId}");
-            // Stop any ongoing tracking.
         }
 
         public override void OnDestroy()
         {
             Log.Debug(TAG, "Destroying printer discovery session");
-            // Do NOT call base.OnDestroy(); the base is abstract.
-        }
-
-        public void UpdatePrinters(BackendPrinter[] printers)
-        {
-            _printers = printers;
-            Log.Debug(TAG, $"Printer list updated. Now {printers.Length} printers available.");
-
-            // Optionally restart discovery immediately:
-            OnStartPrinterDiscovery(new List<PrinterId>());
         }
     }
 }

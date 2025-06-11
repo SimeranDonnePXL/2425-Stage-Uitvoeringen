@@ -18,23 +18,21 @@ namespace MFrontend.Platforms.Android
     {
         const string TAG = "MyPrintService";
 
-        // This static array is populated from your shared/.NET code.
         public BackendPrinter[] SharedPrinters = new BackendPrinter[0];
-        private MyPrinterDiscoverySession? _discoverySession;
+        //private MyPrinterDiscoverySession? _discoverySession;
 
         public MyPrintService()
         {
-            // Required parameterless constructor for Android to instantiate the service.
+
         }
 
         public BackendPrinter[] GetCurrentPrinters() => SharedPrinters ?? Array.Empty<BackendPrinter>();
 
 
-        // Called when Android wants you to create a new discovery session:
         protected override PrinterDiscoverySession OnCreatePrinterDiscoverySession()
         {
             var session = new MyPrinterDiscoverySession(this, SharedPrinters);
-            _discoverySession = session;
+            //_discoverySession = session;
             return session;
         }
 
@@ -51,14 +49,11 @@ namespace MFrontend.Platforms.Android
             printJob.Complete();
         }
 
-        // C# helper to populate SharedPrinters from anywhere in your MAUI code:
-        public void PrintersToDiscover(BackendPrinter[] printers)
-        {
-            SharedPrinters = printers;
-            Log.Debug(TAG, $"PrintersToDiscover called with {printers.Length} printers");
-
-            _discoverySession?.UpdatePrinters(printers); // This will now work.
-        }
+        //public void PrintersToDiscover(BackendPrinter[] printers)
+        //{
+        //    SharedPrinters = printers;
+        //    Log.Debug(TAG, $"PrintersToDiscover called with {printers.Length} printers");
+        //}
 
         public override void OnCreate()
         {
